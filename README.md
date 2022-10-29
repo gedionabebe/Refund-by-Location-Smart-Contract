@@ -29,32 +29,30 @@ If, at any point, the GPS sensor indicates that an employee is outside the range
 1.Install the project
 ```
 git clone https://github.com/gedionabebe/Refund-by-Location-Smart-Contract.git
-cd Refund-by-Location-Smart-Contract
+cd Refund-by-Location-Smart-Contract/refund_dapp
 npm install
+cd Refund-by-Location-Smart-Contract/flutterdapp
+flutter pub get
 ```
 ## Repository Structure
 ```bash
-├── build\contracts\(Smart contractss build files)
+├── refund_dapp\build\contracts\(Smart contractss build files)
 │   
-├── contracts(Solidity smart contracts)
+├── refund_dapp\contracts(Solidity smart contracts)
 │
-├── dist(Index page)
+├── flutterdapp(Mobile Frontend)
 │
-├── migrations(Migrations file)
+├── refund_dapp\migrations(Migrations file)
 │
-├── src(javascript and css files)
-│
-├── tests(Tests)
+├── refund_dapp\tests(Tests)
 │
 ├── README.md(Project information)
 │
-├── package.json(Porject requirements)
+├── refund_dapp\package.json(Porject requirements)
 │
-├──truffle-config.js(Truffle config file)
+├──refund_dapp\truffle-config.js(Truffle config file)
 │
-├──truffle.js(Truffle config file)
-│
-├──webpack.config.js(Webpack Config file)
+
 ```
 ## Contrbutors
 - Gedion Abebe
