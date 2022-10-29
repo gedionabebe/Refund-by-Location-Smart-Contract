@@ -7,33 +7,17 @@ import 'package:http/http.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:url_launcher/url_launcher.dart';
-void main() => runApp(const MyApp());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    const appTitle = 'Employer Page';
-    return MaterialApp(
-      title: appTitle,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text(appTitle),
-        ),
-        body: const MyCustomForm(),
-      ),
-    );
-  }
-}
 
-class MyCustomForm extends StatefulWidget {
-  const MyCustomForm({super.key});
+
+class Employer extends StatefulWidget {
+  const Employer({super.key});
 
   @override
-  State<MyCustomForm> createState() => _MyCustomFormState();
+  State<Employer> createState() => EmployerState();
 }
-class _MyCustomFormState extends State<MyCustomForm>  {
+class EmployerState extends State<Employer>  {
   
   final nameController = TextEditingController();
   final addressController = TextEditingController();
@@ -42,12 +26,12 @@ class _MyCustomFormState extends State<MyCustomForm>  {
   final DistanceController = TextEditingController();
   late Client httpClient = Client();
   late Web3Client  client = Web3Client(
-        "",httpClient);
+        "192.168.22.228:7545",httpClient);
   late EthPrivateKey credentials = EthPrivateKey.fromHex(
-        "d585835f87981557df21fbaf99df4c9d06fd374b6efd121c027e0655cee5b627");
+        "9c225182aeed039eb4c2c0535d3d4522455451a988d4e63f19bef35c608b056f");
 
   late String abi =  rootBundle.loadString("../assets/paybylocation.json") as String;
-  late String  contractAddress = "0x4943030bce7e49dd13b4dd120c0fef7dde3c18a0";
+  late String  contractAddress = "0xa0A6D3181DD5dc365121d7479781D4540B608f21";
   late DeployedContract contract = DeployedContract(ContractAbi.fromJson(abi, "paybylocation"),
         EthereumAddress.fromHex(contractAddress));
   late ContractFunction create_employee = contract.function("create_employee");

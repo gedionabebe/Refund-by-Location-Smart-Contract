@@ -7,44 +7,27 @@ import 'package:http/http.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:url_launcher/url_launcher.dart';
-void main() => runApp(const MyApp());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    const appTitle = 'Employee Page';
-    return MaterialApp(
-      title: appTitle,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text(appTitle),
-        ),
-        body: const MyCustomForm(),
-      ),
-    );
-  }
-}
 
-class MyCustomForm extends StatefulWidget {
-  const MyCustomForm({super.key});
+class Employee extends StatefulWidget {
+  const Employee({super.key});
 
   @override
-  State<MyCustomForm> createState() => _MyCustomFormState();
+  State<Employee> createState() => EmployeeState();
 }
-class _MyCustomFormState extends State<MyCustomForm>  {
+class EmployeeState extends State<Employee>  {
   
   
   final addressController = TextEditingController();
   late Client httpClient = Client();
   late Web3Client  client = Web3Client(
-        "",httpClient);
+        "192.168.22.228:7545",httpClient);
   late EthPrivateKey credentials = EthPrivateKey.fromHex(
-        "d585835f87981557df21fbaf99df4c9d06fd374b6efd121c027e0655cee5b627");
+        "14b9f511bbdfb2e8cac49634dcf6a7ad6a6eb174969919a851d9ec1e727f3494");
 
   late String abi =  rootBundle.loadString("../assets/paybylocation.json") as String;
-  late String  contractAddress = "0x4943030bce7e49dd13b4dd120c0fef7dde3c18a0";
+  late String  contractAddress = "0xa0A6D3181DD5dc365121d7479781D4540B608f21";
   late DeployedContract contract = DeployedContract(ContractAbi.fromJson(abi, "paybylocation"),
         EthereumAddress.fromHex(contractAddress));
   late ContractFunction is_compling = contract.function("is_compling");

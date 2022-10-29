@@ -5,6 +5,8 @@ import 'package:flutterdapp/parentModel.dart';
 import 'package:flutterdapp/childModel.dart';
 import 'package:provider/provider.dart';
 import 'package:flutterdapp/ChildPage.dart';
+import 'package:flutterdapp/employee.dart';
+import 'package:flutterdapp/employer.dart';
 
 
 var password;
@@ -162,7 +164,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const ParentPage(),
+                            builder: (context) => const Employer(),
                           ),
                         );
                       }
@@ -170,7 +172,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const ChildPage(),
+                          builder: (context) => const Employee(),
                         ),
                       );
                     } else {

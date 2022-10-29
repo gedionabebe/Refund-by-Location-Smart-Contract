@@ -26,7 +26,7 @@ class childModel extends ChangeNotifier {
   Future<void> initiateSetup() async {
     _httpClient = Client();
     _client = Web3Client(
-        "https://rinkeby.infura.io/v3/84ee596119e643cdb6e534c7c3674cfa",
+       "192.168.22.228:7545",
         _httpClient);
     await getAbi();
     await getCredentials();
@@ -34,20 +34,20 @@ class childModel extends ChangeNotifier {
   }
 
   Future<void> getAbi() async {
-    _abi = await rootBundle.loadString("../assets/abi.json");
-    _contractAddress = "0x4943030bce7e49dd13b4dd120c0fef7dde3c18a0";
+    _abi = await rootBundle.loadString("../assets/paybylocation.json");
+    _contractAddress = "0xa0A6D3181DD5dc365121d7479781D4540B608f21";
 
 
   }
 
   Future<void> getCredentials() async {
     _credentials = EthPrivateKey.fromHex(
-        "d585835f87981557df21fbaf99df4c9d06fd374b6efd121c027e0655cee5b627");
+        "14b9f511bbdfb2e8cac49634dcf6a7ad6a6eb174969919a851d9ec1e727f3494");
 
   }
 
   Future<void> getDeployedContract() async {
-    _contract = DeployedContract(ContractAbi.fromJson(_abi, "Project"),
+    _contract = DeployedContract(ContractAbi.fromJson(_abi, "paybylocation"),
         EthereumAddress.fromHex(_contractAddress));
     _readCoordinates = _contract.function("readCoordinates");
     _sendCoordinates = _contract.function("sendCoordinates");
