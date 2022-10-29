@@ -27,7 +27,7 @@ class EmployeeState extends State<Employee>  {
         "14b9f511bbdfb2e8cac49634dcf6a7ad6a6eb174969919a851d9ec1e727f3494");
 
   late String abi =  rootBundle.loadString("../assets/paybylocation.json") as String;
-  late String  contractAddress = "0xa0A6D3181DD5dc365121d7479781D4540B608f21";
+  late String  contractAddress = "0x9a284DFc776e67232680378337B9Fa3d6c200B4A";
   late DeployedContract contract = DeployedContract(ContractAbi.fromJson(abi, "paybylocation"),
         EthereumAddress.fromHex(contractAddress));
   late ContractFunction is_compling = contract.function("is_compling");
@@ -74,7 +74,7 @@ void initState() {
       Transaction.callContract(
         contract: contract,
         function: is_compling,
-        parameters: [lat, lon],
+        parameters: [lat, lon,DateTime.now().millisecondsSinceEpoch],
         maxGas: 100000,
       ));
     

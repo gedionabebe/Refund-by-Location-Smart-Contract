@@ -8,16 +8,18 @@ contract paybylocation{
         uint256 long;
         bool iscompling;
         string name;
-        uint allowed_distance;
+        uint256 allowed_distance;
+        uint256 timestamp;
         
     }
     mapping  (address => employee_info) public employee_store;
-function create_employee(uint256 lat, uint256 long, string memory name,address employee_address,uint allowed_distance) public{
+function create_employee(uint256 lat, uint256 long, string memory name,address employee_address,uint allowed_distance,uint256 timestamp) public{
      employee_store[employee_address].lat = lat;
      employee_store[employee_address].long = long;
      employee_store[employee_address].iscompling = false;
      employee_store[employee_address].name = name;
      employee_store[employee_address].allowed_distance = allowed_distance;
+     employee_store[employee_address].timestamp = timestamp;
 
 }
 
@@ -37,13 +39,14 @@ function distance_calculator(uint256 lat, uint256 long,uint256 lat2, uint256 lon
         return uint256(distance);
 
     }
-function is_compling(uint256 lat, uint256 long) public {
+function is_compling(uint256 lat, uint256 long,uint256 emptime) public {
     address employee_address = msg.sender;
     uint256 lat2 = employee_store[employee_address].lat;
     uint256 long2 = employee_store[employee_address].long;
     uint256 distance = distance_calculator(lat,long,lat2,long2);
     uint256 allowed_distance = employee_store[employee_address].allowed_distance;
-    if (distance <= allowed_distance){
+    uint256 timestamp = employee_store[employee_address].timestamp;
+    if (distance <= allowed_distance && emptime<= timestamp){
         employee_store[employee_address].iscompling = true;
     }
     else{
